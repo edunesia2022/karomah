@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>E-KAROMAH SMKNB - Login</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #10b981;
+      --primary-hover: #059669;
+      --accent: #fbbf24;
+      --bg-gradient: linear-gradient(135deg, #022c22 0%, #064e3b 100%);
+      --glass: rgba(0, 0, 0, 0.4);
+      --border: rgba(255, 255, 255, 0.1);
+      --text: #f8fafc;
+      --error: #ef4444;
+      --success: #10b981;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Poppins', system-ui, sans-serif;
+      background: var(--bg-gradient);
+      color: var(--text);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      overflow: hidden;
+      position: relative;
+    }
+
+    body::before {
+      content: '';
+      position: absolute;
+      top: -50px; left: -50px;
+      width: 150px; height: 150px;
+      border-radius: 50%;
+      box-shadow: 40px 40px 0 0 rgba(251, 191, 36, 0.1);
+      z-index: -1;
+    }
+
+    body::after {
+      content: '';
+      position: absolute;
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(16, 185, 129, 0.2) 0%, rgba(0,0,0,0) 70%);
+      bottom: 0; right: 0;
+      z-index: -1;
+    }
+
+    .card {
+      background: var(--glass);
+      padding: 40px 30px;
+      border-radius: 24px;
+      text-align: center;
+      width: 100%;
+      max-width: 340px;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(251, 191, 36, 0.3);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+      animation: floatUp 0.8s ease-out;
+      margin-bottom: 40px;
+    }
+
+    @keyframes floatUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .logo {
+      width: 90px;
+      background: white;
+      padding: 8px;
+      border-radius: 50%;
+      margin-bottom: 15px;
+      box-shadow: 0 0 20px rgba(251, 191, 36, 0.3);
+    }
+
+    h2 {
+      margin: 5px 0 20px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      font-size: 22px;
+      color: var(--accent);
+    }
+
+    .welcome-msg {
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      padding: 15px;
+      border-radius: 12px;
+      margin-bottom: 25px;
+    }
+
+    .welcome-msg h3 {
+      margin: 0 0 4px;
+      font-size: 15px;
+      color: #6ee7b7;
+      font-weight: 600;
+    }
+
+    .welcome-msg p {
+      margin: 0;
+      font-size: 12px;
+      color: #d1fae5;
+      font-style: italic;
+    }
+
+    .login-hint {
+      margin: 0 0 15px;
+      font-size: 13px;
+      opacity: 0.7;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 14px 16px;
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      color: white;
+      outline: none;
+      font-family: inherit;
+      box-sizing: border-box;
+      margin: 8px 0;
+      transition: 0.3s;
+    }
+
+    input::placeholder { color: #94a3b8; }
+
+    input:focus, select:focus {
+      background: rgba(0, 0, 0, 0.5);
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.1);
+    }
+
+    select {
+      appearance: none;
+      background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23fbbf24%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+      background-repeat: no-repeat;
+      background-position: right 15px top 50%;
+      background-size: 10px auto;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      margin-top: 25px;
+      background: var(--primary);
+      color: #022c22;
+      border: none;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 16px;
+      cursor: pointer;
+      transition: transform 0.2s, background 0.2s;
+      box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
+    }
+
+    button:hover, button:focus {
+      background: var(--accent);
+      transform: translateY(-2px);
+      outline: none;
+    }
+
+    #msg {
+      margin-top: 20px;
+      font-size: 13px;
+      min-height: 20px;
+      font-weight: 500;
+      color: #fbbf24;
+      transition: color 0.18s;
+    }
+    #msg.error {
+      color: var(--error);
+    }
+    #msg.success {
+      color: var(--success);
+    }
+
+    .footer-fixed {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: #020617;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding: 10px 0;
+      text-align: center;
+      color: #94a3b8;
+      font-size: 12px;
+      z-index: 50;
+      box-shadow: 0 -2px 8px rgba(0,0,0,0.15);
+    }
+    .footer-fixed a {
+      color: #fbbf24;
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+    .footer-fixed a:hover {
+      color: #10b981;
+      text-decoration: underline;
+    }
+    @media (max-height: 500px) {
+      .footer-fixed { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <img class="logo" src="https://raw.githubusercontent.com/smknbojonggambir/E-RAMADHAN-SMKNB/main/LOGO.png" alt="Logo" loading="lazy">
+    <h2>E-KAROMAH SMKNB</h2>
+    <div class="welcome-msg">
+      <h3>🌙 Marhaban Ya Ramadhan</h3>
+      <p>Mari catat amal kebaikanmu hari ini.</p>
+    </div>
+    <form id="login-form" autocomplete="off" novalidate>
+      <select id="role" required>
+        <option value="" style="color:black" disabled selected>Pilih Role</option>
+        <option value="siswa" style="color:black">Siswa</option>
+        <option value="pembimbing" style="color:black">Pembimbing</option>
+        <option value="admin" style="color:black">Admin</option>
+      </select>
+      <input id="user" placeholder="Username" autocomplete="username" required>
+      <input id="pass" type="password" placeholder="Password" autocomplete="current-password" required>
+      <button type="submit">MASUK</button>
+      <div id="msg" aria-live="polite"></div>
+    </form>
+  </main>
+  <footer class="footer-fixed">
+    &copy; 2026 E-KAROMAH App. Developer <a href="https://www.kangruli.web.id/" target="_blank" rel="noopener noreferrer">Kang Ruli</a>
+  </footer>
+  <script>
+    const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwUE17PCaOXK-9XRiPtLbxGlUqE6BiOWv06Ycly0b1ZLiUwO726X3MQBTkTTiOzSSYuwQ/exec";
+
+    const form = document.getElementById('login-form');
+    const role = document.getElementById('role');
+    const user = document.getElementById('user');
+    const pass = document.getElementById('pass');
+    const msg = document.getElementById('msg');
+
+    // Utility for reset message style
+    function setMsg(message, status = null) {
+      msg.textContent = message;
+      msg.classList.remove('error', 'success');
+      if (status === "error") msg.classList.add('error');
+      else if (status === "success") msg.classList.add('success');
+    }
+
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      setMsg("", null);
+
+      const roleValue = role.value.trim();
+      const userValue = user.value.trim().slice(0, 100);
+      const passValue = pass.value.trim().slice(0, 200);
+
+      if (!roleValue) {
+        setMsg("⚠️ Pilih role terlebih dahulu", "error");
+        role.focus();
+        return;
+      }
+      if (!userValue || !passValue) {
+        setMsg("⚠️ Username & Password wajib diisi", "error");
+        if (!userValue) user.focus();
+        else pass.focus();
+        return;
+      }
+      const allowedRoles = ['siswa', 'pembimbing', 'admin'];
+      if (!allowedRoles.includes(roleValue)) {
+        setMsg("⚠️ Role tidak valid", "error");
+        return;
+      }
+
+      setMsg("⏳ Memproses...", null);
+
+      try {
+        const params = new URLSearchParams({
+          action: 'login',
+          user: userValue,
+          pass: passValue,
+          role: roleValue
+        });
+        const response = await fetch(`${WEB_APP_URL}?${params}`);
+        if (!response.ok) throw new Error("Gagal menghubungi server");
+        let data;
+        try {
+          data = await response.json();
+        } catch {
+          setMsg("❌ Format data server salah", "error");
+          return;
+        }
+
+        if (data.status === "ok") {
+          localStorage.setItem("user", JSON.stringify({
+            nama: data.nama,
+            role: data.role,
+            kelompok: data.kelompok ?? null,
+            username: userValue
+          }));
+          setMsg("✅ Login berhasil!", "success");
+          // Delay redirect for smooth UX if needed
+          setTimeout(() => {
+            const roleRedirectMap = {
+              siswa: "siswa.html",
+              pembimbing: "pembimbing.html",
+              admin: "admin.html"
+            };
+            window.location.href = roleRedirectMap[data.role] || "index.html";
+          }, 500);
+        } else if (data.status === "locked") {
+          setMsg("🔒 Akun Anda dikunci. Silakan hubungi admin.", "error");
+        } else if (data.status === "disabled") {
+          setMsg("🚫 Akun tidak aktif. Hubungi admin.", "error");
+        } else {
+          setMsg("❌ Username / Password salah", "error");
+        }
+      } catch (error) {
+        setMsg("❌ Koneksi gagal / Internet bermasalah", "error");
+        console.error(error);
+      }
+    });
+
+    // Autofocus ke user jika role sudah dipilih
+    role.addEventListener('change', () => {
+      user.focus();
+    });
+  </script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js')
+          .then(reg => console.log('SW Otomatis Siap!', reg.scope))
+          .catch(err => console.log('SW Gagal:', err));
+      });
+    }
+  </script>
+</body>
+</html>
