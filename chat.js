@@ -1,5 +1,5 @@
 // ================= CONFIG =================
-const CHAT_URL = "https://script.google.com/macros/s/AKfycbwUE17PCaOXK-9XRiPtLbxGlUqE6BiOWv06Ycly0b1ZLiUwO726X3MQBTkTTiOzSSYuwQ/exec";
+const CHAT_URL = "https://script.google.com/macros/s/AKfycbyAHsv0ArPsG4AgabOucik-w5o2j3lQRfpK477m6Zmix60g7vGbg9TCbO3blwMsiI5spg/exec";
 
 /** Escape string untuk mencegah XSS saat dipakai di HTML */
 function escapeHtml(str) {
